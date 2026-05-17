@@ -11,13 +11,18 @@ public class BombMain {
         // TODO: Find the correct inputs (passwords) to each phase using debugging techniques
         Bomb b = new Bomb();
         if (phase >= 0) {
-            b.phase0("Figure this out. I wonder where the phases are defined...");
+            b.phase0("39291226");
         }
         if (phase >= 1) {
-            b.phase1(null); // Figure this out too
+            IntList p = new IntList(8, null);
+            p = new IntList(0, p);
+            p = new IntList(3, p);
+            p = new IntList(9, p);
+            p = new IntList(0, p);
+            b.phase1(p); // Figure this out too
         }
         if (phase >= 2) {
-            b.phase2("Figure this out. I wonder where the phases are defined...");
+            b.phase2("793227803");
         }
     }
 }
