@@ -19,7 +19,25 @@ public class GameLogic {
      *              if no merge occurs, then return 0.
      */
     public static int moveTileUpAsFarAsPossible(int[][] board, int r, int c, int minR) {
-        // TODO: Fill this in in tasks 2, 3, 4
+        int j = minR;
+        for (int i = r - 1; i >= minR; i--){
+            if (board[i][c] != 0){
+                j = i + 1;
+                break;
+            }
+        }
+        if (r != j) {
+            board[j][c] = board[r][c];
+            board[r][c] = 0;
+        }
+        if (j == minR){
+            return 0;
+        }
+        if (board[j][c] == board[j - 1][c]){
+            board[j - 1][c] = board[j][c] * 2;
+            board[j][c] = 0;
+            return j;
+        }
         return 0;
     }
 
@@ -31,7 +49,10 @@ public class GameLogic {
      * @param c         the column to tilt up.
      */
     public static void tiltColumn(int[][] board, int c) {
-        // TODO: fill this in in task 5
+        int minR = 0;
+        for (int i = 0; i < 4; i++){
+            minR = moveTileUpAsFarAsPossible(board,i, c, minR);
+        }
         return;
     }
 
@@ -41,7 +62,9 @@ public class GameLogic {
      * @param board     the current state of the board.
      */
     public static void tiltUp(int[][] board) {
-        // TODO: fill this in in task 6
+        for (int i = 0; i < 4; i++){
+            tiltColumn(board, i);
+        }
         return;
     }
 
@@ -55,13 +78,21 @@ public class GameLogic {
     public static void tilt(int[][] board, Side side) {
         // TODO: fill this in in task 7
         if (side == Side.EAST) {
-            return;
+            rotateLeft(board);
+            tiltUp(board);
+            rotateRight(board);
         } else if (side == Side.WEST) {
-            return;
+            rotateRight(board);
+            tiltUp(board);
+            rotateLeft(board);
         } else if (side == Side.SOUTH) {
-            return;
+            rotateRight(board);
+            rotateRight(board);
+            tiltUp(board);
+            rotateLeft(board);
+            rotateLeft(board);
         } else {
-            return;
+            tiltUp(board);
         }
     }
 }
