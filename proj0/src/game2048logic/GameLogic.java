@@ -1,5 +1,6 @@
 package game2048logic;
 
+
 import game2048rendering.Side;
 import static game2048logic.MatrixUtils.rotateLeft;
 import static game2048logic.MatrixUtils.rotateRight;
